@@ -2,9 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Checkout') {
             steps {
-                echo 'Hello World'
+                git url: 'https://github.com/eyansibi/AtelierDevops.git', branch: 'master'
+            }
+        }
+        
+        stage('Maven Clean and Compile') {
+            steps {
+                sh 'mvn clean install'
             }
         }
     }
